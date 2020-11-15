@@ -1,5 +1,8 @@
 // 服务器
 
+const { serverPort, HOT_ONE_DATE_DATA, HOT_RANGE_DATE_DATA } = require('./consts.js');
+const { createMockData } = require('./util/mockData');
+
 const Koa = require('koa');
 const app = new Koa();
 
@@ -20,15 +23,30 @@ app.use(allowOrigin);
 const Router = require('koa-router');
 const router = new Router();
 
-async function hello (ctx) {
+function hello (ctx) {
     ctx.body = 'hello koa';
 }
 
 router.get('/', hello);
 
-app.use(router.routes());
+function getHotOneDateData (ctx) {
+    const time = ctx.query.time;
+    console.log(`time: ${ time }`);
+    ctx.body = createMockData();
+}
 
-const { serverPort } = require('./consts.js');
+router.get(HOT_ONE_DATE_DATA, getHotOneDateData);
+
+function getHotRangeDateData (ctx) {
+    const { from, to } = ctx.query;
+    console.log(`from: ${ from }`);
+    console.log(`to: ${ to }`);
+    ctx.body = createMockData();
+}
+
+router.get(HOT_RANGE_DATE_DATA, getHotRangeDateData);
+
+app.use(router.routes());
 
 app.listen(serverPort);
 
