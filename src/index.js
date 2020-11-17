@@ -1,7 +1,7 @@
 // 服务器
 
-const { serverPort, HOT_ONE_DATE_DATA, HOT_RANGE_DATE_DATA } = require('./consts.js');
-const { createMockData } = require('./util/mockData');
+const { serverPort } = require('./consts.js');
+const { setupHotRouter } = require('./router/hot');
 
 const Koa = require('koa');
 const app = new Koa();
@@ -29,22 +29,7 @@ function hello (ctx) {
 
 router.get('/', hello);
 
-function getHotOneDateData (ctx) {
-    const time = ctx.query.time;
-    console.log(`time: ${ time }`);
-    ctx.body = createMockData();
-}
-
-router.get(HOT_ONE_DATE_DATA, getHotOneDateData);
-
-function getHotRangeDateData (ctx) {
-    const { from, to } = ctx.query;
-    console.log(`from: ${ from }`);
-    console.log(`to: ${ to }`);
-    ctx.body = createMockData();
-}
-
-router.get(HOT_RANGE_DATE_DATA, getHotRangeDateData);
+setupHotRouter(router);
 
 app.use(router.routes());
 

@@ -1,5 +1,5 @@
 const MOCK_COUNT = 10;
-const MOCK_CITY_NAMES = 'abcdefghijklmnopqrstuvwxyz'.split('');
+const MOCK_NAMES = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const VALUE_KEY = 'value';
 
 function sortData (source) {
@@ -10,16 +10,20 @@ function sortData (source) {
     return source;
 }
 
+function randomNum (num) {
+    return Math.round(Math.random() * (num || 100));
+}
+
 function createMockData () {
     const result = [];
-    const count = Math.min(MOCK_COUNT, MOCK_CITY_NAMES.length);
+    const count = Math.min(MOCK_COUNT, MOCK_NAMES.length);
     for (let i = 0; i < count; i++)
     {
-        const city = MOCK_CITY_NAMES[i];
-        const value = Math.round(Math.random() * 100);
+        const name = MOCK_NAMES[i];
+        const value = randomNum();
         const data = {
-            city,
-            id: i
+            name,
+            id: `${ i }`
         };
         data[VALUE_KEY] = value;
         result.push(data);
@@ -27,7 +31,24 @@ function createMockData () {
     return sortData(result);
 }
 
+function createMockDetail (id) {
+    const index = Number(id);
+    const name = MOCK_NAMES[index];
+    return {
+        name,
+        id,
+        firstBroadcastTime: Date.now(),
+        wantWatchSum: randomNum(),
+        isWatchingSum: randomNum(),
+        watchedSum: randomNum(),
+        commendSum: randomNum(),
+        score: randomNum(10),
+        thumbUpSum: randomNum()
+    };
+}
+
 module.exports = {
+    createMockDetail,
     createMockData
 };
 
