@@ -1,20 +1,19 @@
-const MOCK_COUNT = 10;
+const MOCK_COUNT = 26;
 const MOCK_NAMES = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const VALUE_KEY = 'value';
 
-function sortData (source) {
-    source.sort((a, b) => {
-        return a[VALUE_KEY] - b[VALUE_KEY];
-    });
+const TODAY_TIME = 24 * 60 * 60 * 1000;
 
-    return source;
+function regularTimeToDay (time) {
+    const restTime = time % TODAY_TIME;
+    return time - restTime;
 }
 
 function randomNum (num) {
     return Math.round(Math.random() * (num || 100));
 }
 
-function createMockData () {
+function createMockCartoonTodayData () {
     const result = [];
     const count = Math.min(MOCK_COUNT, MOCK_NAMES.length);
     for (let i = 0; i < count; i++)
@@ -23,32 +22,29 @@ function createMockData () {
         const value = randomNum();
         const data = {
             name,
-            id: `${ i }`
+            id: `${ i }`,
+            firstBroadcastTime: regularTimeToDay(Date.now()),
+            postSrc: 'http://img9.doubanio.com/view/photo/s_ratio_poster/public/p2548248276.jpg',
+            score: createMockScore(),
+            wantWatchSum: randomNum(),
+            isWatchingSum: randomNum(),
+            watchedSum: randomNum(),
+            commendSum: randomNum(),
+            thumbUpSum: randomNum(),
+            hot: randomNum()
         };
         data[VALUE_KEY] = value;
         result.push(data);
     }
-    return sortData(result);
+    return result;
 }
 
-function createMockDetail (id) {
-    const index = Number(id);
-    const name = MOCK_NAMES[index];
-    return {
-        name,
-        id,
-        firstBroadcastTime: Date.now(),
-        wantWatchSum: randomNum(),
-        isWatchingSum: randomNum(),
-        watchedSum: randomNum(),
-        commendSum: randomNum(),
-        score: randomNum(10),
-        thumbUpSum: randomNum()
-    };
+function createMockScore () {
+    return randomNum(10);
 }
 
 module.exports = {
-    createMockDetail,
-    createMockData
+    createMockScore,
+    createMockCartoonTodayData
 };
 
