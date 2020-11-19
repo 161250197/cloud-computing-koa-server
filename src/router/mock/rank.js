@@ -1,15 +1,15 @@
-
-const CARTOON_INFO = '/cartoonInfo';
-const CARTOON_RANK_PATH = '/cartoonRankPath';
-const TIME_RANGE_CARTOON_RANK_PATH = '/timeRangeCartoonRankPath';
-
+const { 
+    CARTOON_INFO_ARR,
+    CARTOON_RANK_PATH,
+    TIME_RANGE_CARTOON_RANK_PATH
+} = require('../../consts');
 const {
     createMockCartoonInfoArr,
     createMockCartoonRankPath,
     createMockTimeRangeCartoonRankPath
 } = require('./../../util/mockData');
 
-function getCartoonInfo (ctx) {
+function getCartoonInfoArr (ctx) {
     ctx.body = createMockCartoonInfoArr();
 }
 
@@ -23,7 +23,7 @@ function getTimeRangeCartoonRankPath (ctx) {
 }
 
 function setupRankRouter (router) {
-    router.get(CARTOON_INFO, getCartoonInfo);
+    router.get(CARTOON_INFO_ARR, getCartoonInfoArr);
     router.get(CARTOON_RANK_PATH, getCartoonRankPath);
     router.get(TIME_RANGE_CARTOON_RANK_PATH, getTimeRangeCartoonRankPath);
 }

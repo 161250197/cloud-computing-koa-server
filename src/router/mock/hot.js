@@ -1,6 +1,4 @@
-
-const HOT_TODAY_DATA = '/hotTodayData';
-
+const { HOT_TODAY_DATA } = require('../../consts');
 const { createMockCartoonTodayData } = require('./../../util/mockData');
 
 function getHotTodayData (ctx) {

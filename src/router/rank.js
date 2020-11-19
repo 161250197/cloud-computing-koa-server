@@ -1,8 +1,8 @@
-
-const CARTOON_INFO_ARR = '/cartoonInfoArr';
-const CARTOON_RANK_PATH = '/cartoonRankPath';
-const TIME_RANGE_CARTOON_RANK_PATH = '/timeRangeCartoonRankPath';
-
+const { 
+    CARTOON_INFO_ARR,
+    CARTOON_RANK_PATH,
+    TIME_RANGE_CARTOON_RANK_PATH
+} = require('../../consts');
 const {
     createMockCartoonInfoArr,
     createMockCartoonRankPath,
