@@ -1,8 +1,15 @@
 // 服务器
 
-const { serverPort } = require('./consts.js');
-const { setupHotRouter } = require('./router/hot');
-const { setupRankRouter } = require('./router/rank');
+const { serverPort, mockMode } = require('./consts.js');
+const setupFuncs = mockMode
+    ? [
+        require('./router/mock/hot'),
+        require('./router/mock/rank')
+    ]
+    : [
+        require('./router/hot'),
+        require('./router/rank')
+    ];
 
 const Koa = require('koa');
 const app = new Koa();
@@ -30,8 +37,7 @@ function hello (ctx) {
 
 router.get('/', hello);
 
-setupHotRouter(router);
-setupRankRouter(router);
+setupFuncs.forEach(func => func(router));
 
 app.use(router.routes());
 

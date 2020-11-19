@@ -24,7 +24,7 @@ function createMockCartoonInfo (i) {
     };
 }
 
-function createMockCartoonInfoData () {
+function createMockCartoonInfoArr () {
     const result = [];
     for (let i = 0; i < MOCK_COUNT; i++)
     {
@@ -96,7 +96,7 @@ function createMockScore () {
 
 module.exports = {
     createMockScore,
-    createMockCartoonInfoData,
+    createMockCartoonInfoArr,
     createMockCartoonRankPath,
     createMockTimeRangeCartoonRankPath,
     createMockCartoonTodayData
