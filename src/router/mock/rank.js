@@ -18,7 +18,9 @@ function getCartoonRankPath (ctx) {
 }
 
 function getTimeRangeCartoonRankPath (ctx) {
-    const { from, to } = ctx.query;
+    let { from, to } = ctx.query;
+    from = Number(from);
+    to = Number(to);
     ctx.body = createMockTimeRangeCartoonRankPath(from, to);
 }
 

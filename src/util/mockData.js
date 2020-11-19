@@ -20,7 +20,8 @@ function createMockCartoonInfo (i) {
         name,
         id: `${ i }`,
         firstBroadcastTime: regularTimeToDay(Date.now()),
-        postSrc: MOCK_POST_SRC
+        postSrc: MOCK_POST_SRC,
+        score: createMockScore()
     };
 }
 
@@ -28,7 +29,7 @@ function createMockCartoonInfoArr () {
     const result = [];
     for (let i = 0; i < MOCK_COUNT; i++)
     {
-        result.push(createMockCartoonInfo());
+        result.push(createMockCartoonInfo(i));
     }
     return result;
 }
@@ -59,10 +60,10 @@ function createMockTimeRangeCartoonRankPath (from, to) {
             const info = createMockCartoonInfo(i);
             rankArr.push({
                 ...info,
-                score: createMockScore(),
                 time
             });
         }
+        result.push(rankArr);
     }
     return result;
 }
@@ -76,7 +77,6 @@ function createMockCartoonTodayData () {
         const info = createMockCartoonInfo(i);
         const data = {
             ...info,
-            score: createMockScore(),
             wantWatchSum: randomNum(),
             isWatchingSum: randomNum(),
             watchedSum: randomNum(),
