@@ -2,6 +2,7 @@
 
 const { serverPort } = require('./consts.js');
 const { setupHotRouter } = require('./router/hot');
+const { setupRankRouter } = require('./router/rank');
 
 const Koa = require('koa');
 const app = new Koa();
@@ -30,6 +31,7 @@ function hello (ctx) {
 router.get('/', hello);
 
 setupHotRouter(router);
+setupRankRouter(router);
 
 app.use(router.routes());
 
