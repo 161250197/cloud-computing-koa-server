@@ -1,9 +1,17 @@
-const MOCK_COUNT = 26;
+const MOCK_COUNT = 25;
 const MOCK_NAMES = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const VALUE_KEY = 'value';
 const MOCK_POST_SRC = 'http://img9.doubanio.com/view/photo/s_ratio_poster/public/p2548248276.jpg';
 
 const ONE_DAY_TIME = 24 * 60 * 60 * 1000;
+
+function sortData (source, key) {
+    source.sort((a, b) => {
+        return a[key] - b[key];
+    });
+
+    return source;
+}
 
 function regularTimeToDay (time) {
     const restTime = time % ONE_DAY_TIME;
@@ -63,7 +71,7 @@ function createMockTimeRangeCartoonRankPath (from, to) {
                 time
             });
         }
-        result.push(rankArr);
+        result.push(sortData(rankArr, 'score'));
     }
     return result;
 }
