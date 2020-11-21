@@ -2,6 +2,37 @@ const MOCK_COUNT = 25;
 const MOCK_NAMES = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const VALUE_KEY = 'value';
 const MOCK_POST_SRC = 'http://img9.doubanio.com/view/photo/s_ratio_poster/public/p2548248276.jpg';
+const MOCK_USER_DATA = [
+    {
+        'name': '四不象',
+        'id': '1832573'
+    },
+    {
+        'name': '王贫困',
+        'id': '34873691'
+    },
+    {
+        'name': 'zlic',
+        'id': '200731406'
+    },
+    {
+        'name': '远子',
+        'id': '1832573'
+    },
+    {
+        'name': '马亿',
+        'id': '64563895'
+    }
+];
+
+function createMockUserData (count) {
+    const dataLen = MOCK_USER_DATA.length;
+    count = Math.min(count, dataLen);
+    const data = [...MOCK_USER_DATA, ...MOCK_USER_DATA];
+    const start = Math.floor(Math.random() * dataLen);
+    const result = data.slice(start, start + count);
+    return result;
+}
 
 const ONE_DAY_TIME = 24 * 60 * 60 * 1000;
 
@@ -103,6 +134,7 @@ function createMockScore () {
 }
 
 module.exports = {
+    createMockUserData,
     createMockScore,
     createMockCartoonInfoArr,
     createMockCartoonRankPath,
