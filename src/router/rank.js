@@ -1,4 +1,4 @@
-const { 
+const {
     CARTOON_INFO_ARR,
     CARTOON_RANK_PATH,
     TIME_RANGE_CARTOON_RANK_PATH
@@ -27,10 +27,10 @@ function getTimeRangeCartoonRankPath (ctx) {
     ctx.body = createMockTimeRangeCartoonRankPath(from, to);
 }
 
-function setupRankRouter (router) {
+function setupRouter (router) {
     router.get(CARTOON_INFO_ARR, getCartoonInfoArr);
     router.get(CARTOON_RANK_PATH, getCartoonRankPath);
     router.get(TIME_RANGE_CARTOON_RANK_PATH, getTimeRangeCartoonRankPath);
 }
 
-module.exports = setupRankRouter;
+module.exports = setupRouter;

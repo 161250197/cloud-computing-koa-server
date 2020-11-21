@@ -6,8 +6,8 @@ function getHotTodayData (ctx) {
     ctx.body = createMockCartoonTodayData();
 }
 
-function setupHotRouter (router) {
+function setupRouter (router) {
     router.get(HOT_TODAY_DATA, getHotTodayData);
 }
 
-module.exports = setupHotRouter;
+module.exports = setupRouter;
