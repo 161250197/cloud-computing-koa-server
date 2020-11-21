@@ -4,11 +4,13 @@ const { serverPort, mockMode } = require('./consts.js');
 const setupFuncs = mockMode
     ? [
         require('./router/mock/hot'),
-        require('./router/mock/rank')
+        require('./router/mock/rank'),
+        require('./router/mock/user')
     ]
     : [
         require('./router/hot'),
-        require('./router/rank')
+        require('./router/rank'),
+        require('./router/user')
     ];
 
 const Koa = require('koa');

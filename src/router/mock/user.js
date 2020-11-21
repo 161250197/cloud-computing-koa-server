@@ -7,7 +7,7 @@ function getRandomUsers (ctx) {
 }
 
 function getRecommendUsers (ctx) {
-    const count = Math.floor(Math.random() * 5);
+    const count = Math.ceil(Math.random() * 5);
     ctx.body = createMockUserData(count);
 }
 
