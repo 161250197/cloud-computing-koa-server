@@ -1,4 +1,4 @@
-const { RANDOM_USERS, RECOMMEND_USERS } = require('../../consts');
+const { RANDOM_USERS, RECOMMEND_USERS } = require('../../data/consts');
 const { createMockUserData } = require('./../../util/mockData');
 
 function getRandomUsers (ctx) {

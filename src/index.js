@@ -1,6 +1,6 @@
 // 服务器
 
-const { serverPort, mockMode } = require('./consts.js');
+const { serverPort, mockMode } = require('./data/consts');
 const setupFuncs = mockMode
     ? [
         require('./router/mock/hot'),

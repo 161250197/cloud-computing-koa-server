@@ -1,7 +1,4 @@
 const MOCK_COUNT = 25;
-const MOCK_NAMES = 'abcdefghijklmnopqrstuvwxyz'.split('');
-const VALUE_KEY = 'value';
-const MOCK_POST_SRC = 'http://img9.doubanio.com/view/photo/s_ratio_poster/public/p2548248276.jpg';
 const MOCK_USER_DATA = [
     {
         'name': '四不象',
@@ -24,6 +21,7 @@ const MOCK_USER_DATA = [
         'id': '64563895'
     }
 ];
+const cartoonList = require('../data/cartoonList.json');
 
 function createMockUserData (count) {
     const dataLen = MOCK_USER_DATA.length;
@@ -54,12 +52,9 @@ function randomNum (num) {
 }
 
 function createMockCartoonInfo (i) {
-    const name = MOCK_NAMES[i];
+    const cartoon = cartoonList[i];
     return {
-        name,
-        id: `${ i }`,
-        firstBroadcastTime: regularTimeToDay(Date.now()),
-        postSrc: MOCK_POST_SRC,
+        ...cartoon,
         score: createMockScore()
     };
 }
@@ -109,10 +104,9 @@ function createMockTimeRangeCartoonRankPath (from, to) {
 
 function createMockCartoonTodayData () {
     const result = [];
-    const count = Math.min(MOCK_COUNT, MOCK_NAMES.length);
+    const count = Math.min(MOCK_COUNT, cartoonList.length);
     for (let i = 0; i < count; i++)
     {
-        const value = randomNum();
         const info = createMockCartoonInfo(i);
         const data = {
             ...info,
@@ -123,7 +117,6 @@ function createMockCartoonTodayData () {
             thumbUpSum: randomNum(),
             hot: randomNum()
         };
-        data[VALUE_KEY] = value;
         result.push(data);
     }
     return result;

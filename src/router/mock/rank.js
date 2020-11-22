@@ -2,7 +2,7 @@ const {
     CARTOON_INFO_ARR,
     CARTOON_RANK_PATH,
     TIME_RANGE_CARTOON_RANK_PATH
-} = require('../../consts');
+} = require('../../data/consts');
 const {
     createMockCartoonInfoArr,
     createMockCartoonRankPath,
