@@ -31,6 +31,7 @@
   "homepage": "https://github.com/161250197/cloud-computing-koa-server#readme",
   "dependencies": {
     "eslint": "^7.13.0",
+    "hbase": "^0.6.1",
     "husky": "^4.3.0",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",

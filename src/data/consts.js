@@ -1,5 +1,3 @@
-const mockMode = true;
-
 const serverPort = 8888;
 
 const HOT_TODAY_DATA = '/hotTodayData';
@@ -10,8 +8,12 @@ const TIME_RANGE_CARTOON_RANK_PATH = '/timeRangeCartoonRankPath';
 const RANDOM_USERS = '/randomUsers';
 const RECOMMEND_USERS = '/recommendUsers';
 
+const hbaseHost = 'namenode';
+const hbasePort = 60000;
+
 module.exports = {
-    mockMode,
+    hbaseHost,
+    hbasePort,
     serverPort,
     HOT_TODAY_DATA,
     CARTOON_INFO_ARR,
