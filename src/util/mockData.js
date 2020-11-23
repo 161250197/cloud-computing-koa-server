@@ -1,29 +1,8 @@
-const MOCK_COUNT = 25;
-const MOCK_USER_DATA = [
-    {
-        'name': '四不象',
-        'id': '1832573'
-    },
-    {
-        'name': '王贫困',
-        'id': '34873691'
-    },
-    {
-        'name': 'zlic',
-        'id': '200731406'
-    },
-    {
-        'name': '远子',
-        'id': '14597285'
-    },
-    {
-        'name': '马亿',
-        'id': '64563895'
-    }
-];
+const MOCK_COUNT = 20;
 const cartoonList = require('../data/cartoonList.json');
 
 function createMockUserData (count) {
+    const MOCK_USER_DATA = require('../data/userList.json');
     const dataLen = MOCK_USER_DATA.length;
     count = Math.min(count, dataLen);
     const data = [...MOCK_USER_DATA, ...MOCK_USER_DATA];
@@ -48,7 +27,7 @@ function regularTimeToDay (time) {
 }
 
 function randomNum (num) {
-    return Math.round(Math.random() * (num || 100));
+    return regularScoreDotOne(Math.random() * (num || 100));
 }
 
 function createMockCartoonInfo (i) {
@@ -124,6 +103,16 @@ function createMockCartoonTodayData () {
 
 function createMockScore () {
     return randomNum(10);
+}
+
+function regularScoreDotOne (score) {
+    const individual = `${ Math.floor(score) }`;
+    const rest = Math.floor(score * 10) % 10;
+    if (rest === 0)
+    {
+        return individual;
+    }
+    return Number(`${ individual }.${ rest }`);
 }
 
 module.exports = {
