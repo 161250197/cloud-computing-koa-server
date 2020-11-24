@@ -1,7 +1,7 @@
 const list = require("./../json/cartoonList.json");
 const c = require('child_process');
 const count = list.length;
-const start = 0;
+const start = 6;
 let index = start;
 
 function check () {
@@ -11,7 +11,7 @@ function check () {
     index++;
     if (index < count)
     {
-        setTimeout(check, 4000);
+        setTimeout(check, 12000);
     }
 }
 

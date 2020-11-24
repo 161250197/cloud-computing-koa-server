@@ -8,14 +8,21 @@
     const commentSum = shortCommentSum + longCommentSum;
     const [, isWatchingSum, watchedSum, wantWatchSum] = /^(\d+)[^/\d]*\/[^/\d]*(\d+)[^/\d]*\/[^/\d]*(\d+).+$/.exec(document.querySelector("#subject-others-interests > div").innerText).map(Number);
     const hot = longCommentSum * 10 + shortCommentSum * 5 + isWatchingSum * 3 + watchedSum * 2 + wantWatchSum * 1;
+    const name = document.querySelector("#content > h1 > span:nth-child(1)").innerText;
+
+    // const data = {
+    //     name,
+    //     commentSum,
+    //     hot,
+    //     isWatchingSum,
+    //     score,
+    //     wantWatchSum,
+    //     watchedSum,
+    //     starCounts
+    // };
 
     const data = {
-        commentSum,
-        hot,
-        isWatchingSum,
-        score,
-        wantWatchSum,
-        watchedSum,
+        name,
         starCounts
     };
 
