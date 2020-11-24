@@ -4,14 +4,12 @@ const {
     TIME_RANGE_CARTOON_RANK_PATH
 } = require('../data/consts');
 const {
-    createMockCartoonInfoArr,
     createMockCartoonRankPath,
     createMockTimeRangeCartoonRankPath
 } = require('./../util/mockData');
 
-function getCartoonInfoArr (ctx) {
-    // TODO
-    ctx.body = createMockCartoonInfoArr();
+async function getCartoonInfoArr (ctx) {
+    ctx.body = require('./../util/dataManager').getCartoonInfoArr();
 }
 
 function getCartoonRankPath (ctx) {

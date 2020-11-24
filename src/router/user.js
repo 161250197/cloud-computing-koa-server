@@ -8,10 +8,8 @@ function getRandomUsers (ctx) {
 
 async function getRecommendUsers (ctx) {
     const { id } = ctx.query;
-    const getData = require('./../util/hbaseHelper').getRecommendUsers;
-    const data = await getData(id);
     // eslint-disable-next-line require-atomic-updates
-    ctx.body = data;
+    ctx.body = await require('./../util/hbaseHelper').getRecommendUsers(id);
 }
 
 function setupRouter (router) {

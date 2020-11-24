@@ -92,7 +92,7 @@ function createMockCartoonTodayData () {
             wantWatchSum: randomNum(),
             isWatchingSum: randomNum(),
             watchedSum: randomNum(),
-            commendSum: randomNum(),
+            commentSum: randomNum(),
             thumbUpSum: randomNum(),
             hot: randomNum()
         };

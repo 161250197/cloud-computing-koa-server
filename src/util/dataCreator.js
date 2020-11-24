@@ -9,15 +9,17 @@ function createRecommendUsers (id, userCount = Math.floor(Math.random() * 3) + 3
 
     const result = [];
 
-    for (let i = 0; i < userCount; i++) {
+    for (let i = 0; i < userCount; i++)
+    {
         const userListIndex = Math.floor(Math.random() * userListCount);
-        const fileName = `${userListIndex}.json`;
-        const filePath = `${dirPath}/${fileName}`;
+        const fileName = `${ userListIndex }.json`;
+        const filePath = `${ dirPath }/${ fileName }`;
         targetPath = path.resolve(__dirname, filePath);
         const userList = JSON.parse(fs.readFileSync(targetPath));
         const userCount = userList.length;
         const user = userList[Math.floor(Math.random() * userCount)];
-        if (user.id !== id) {
+        if (user.id !== id)
+        {
             result.push(user);
         }
     }
@@ -25,6 +27,12 @@ function createRecommendUsers (id, userCount = Math.floor(Math.random() * 3) + 3
     return result;
 }
 
+function getCartoonInfo (id) {
+    const cartoonInfo = require('./../data/cartoonInfoMap.json')[id];
+    return cartoonInfo || { id };
+}
+
 module.exports = {
+    getCartoonInfo,
     createRecommendUsers
 };
