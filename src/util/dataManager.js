@@ -68,7 +68,13 @@ function getCartoonInfoArr () {
     return require(CARTOON_INFO_ARR_PATH);
 }
 
+function getCartoonInfo (id) {
+    const cartoonInfo = require('./../data/cartoonInfoMap.json')[id];
+    return cartoonInfo || { id };
+}
+
 module.exports = {
+    getCartoonInfo,
     getCartoonInfoArr,
     getUserInfo,
     initData,

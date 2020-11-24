@@ -27,7 +27,12 @@ function sortData (source, key, down) {
     return source;
 }
 
+function calRangeDate (from, to) {
+    return Math.floor((to - from) / ONE_DAY_TIME);
+}
+
 module.exports = {
+    calRangeDate,
     sortData,
     calDate,
     regularTimeToDay,

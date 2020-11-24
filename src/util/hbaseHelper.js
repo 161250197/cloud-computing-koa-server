@@ -16,7 +16,7 @@ async function getCartoonInfo (id) {
     const COLUMN = 'json';
     const get = new client.Get(ROW);
     get.addColumn(FAMILY, COLUMN);
-    let result = require('./dataCreator').getCartoonInfo(id);
+    let result = require('./dataManager').getCartoonInfo(id);
     try
     {
         const data = await client.getAsync(TABLE, get);
@@ -44,9 +44,38 @@ async function getCartoonInfo (id) {
     return result;
 }
 
-function getCartoonRankPath (id) {
-    // TODO 等文档确定
-    console.log(id);
+function transferCartoonRank ({ date, score }) {
+    return {
+        score: Number(score) || 0,
+        time: new Date(date).getTime()
+    };
+}
+
+async function getCartoonRankPath (id) {
+    const TABLE = 'history_data';
+    const ROW = id;
+    const FAMILY = 'record';
+    const COLUMN = 'json';
+    const get = new client.Get(ROW);
+    get.addColumn(FAMILY, COLUMN);
+    try
+    {
+        const arr = [];
+        const data = await client.getAsync(TABLE, get);
+        const rankPathObject = JSON.parse(data[0]);
+
+        for (let key in rankPathObject)
+        {
+            const rankPath = transferCartoonRank(rankPathObject[key]);
+            arr.push(rankPath);
+        }
+        return require('./math').sortData(arr, 'date');
+    } catch (e)
+    {
+        console.log('[ERROR] getCartoonRankPath', e.toString());
+    }
+    const result = require('./dataCreator').createCartoonRankPath(id);
+    return result;
 }
 
 async function getRecommendUsers (id) {

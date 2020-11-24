@@ -27,12 +27,11 @@ function createRecommendUsers (id, userCount = Math.floor(Math.random() * 3) + 3
     return result;
 }
 
-function getCartoonInfo (id) {
-    const cartoonInfo = require('./../data/cartoonInfoMap.json')[id];
-    return cartoonInfo || { id };
+function createCartoonRankPath (id) {
+    return { id };
 }
 
 module.exports = {
-    getCartoonInfo,
+    createCartoonRankPath,
     createRecommendUsers
 };
