@@ -10,5 +10,5 @@ function exec (source, target) {
     fs.writeFileSync(targetPath, JSON.stringify(map));
 }
 
-// exec("./../json/cartoonInfoList.json", "./../json/cartoonInfoMap.json");
+exec("./../json/cartoonInfoList.json", "./../json/cartoonInfoMap.json");
 exec("./../json/userList.json", "./../json/userMap.json");
