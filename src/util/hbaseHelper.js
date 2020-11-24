@@ -1,17 +1,12 @@
-const hbase = require('hbase');
-const { hbaseHost, hbasePort } = require('../data/consts');
-
 let client = undefined;
 
-function initClient (callback) {
-    client = hbase({ host: hbaseHost, port: hbasePort });
-    client.tables((error, tables) => {
-        const success = !error;
-        callback(success);
-        if (success) {
-            console.log('[INFO] tables: ', tables);
-        }
-    });
+function initClient () {
+    const { hbaseHost, hbasePort } = require('../data/consts');
+    const config = {
+        hosts: [hbaseHost],
+        port: hbasePort
+    };
+    client = require('node-thrift2-hbase')(config);
 }
 
 function getCartoonInfo (id, onfail, onsuccess) {
@@ -24,18 +19,29 @@ function getCartoonRankPath (id, onfail, onsuccess) {
     onfail(id, onsuccess);
 }
 
-function getRecommendUsers (id, onfail, onsuccess) {
-    const RELATIVE_USERS_TABLE_NAME = 'relativeUsers';
-    const relativeUsersRow = client.table(RELATIVE_USERS_TABLE_NAME).row(id);
-    const RELATIVE_USERS_COLUMN = 'relative:neighbors';
-    relativeUsersRow.get(RELATIVE_USERS_COLUMN, (error, result) => {
-        if (error || !result) {
-            onfail();
-            return;
-        }
-        const data = result[0];
-        onsuccess(data);
-    });
+async function getRecommendUsers (id) {
+    const TABLE = 'relativeUsers';
+    const ROW = id;
+    const FAMILY = 'relative';
+    const COLUMN = 'neighbors';
+    const get = new client.Get(ROW);
+    get.addColumn(FAMILY, COLUMN);
+    try {
+        const data = await client.getAsync(TABLE, get);
+        const assert = require('assert').strict;
+        const recommendList = JSON.parse(data[0]);
+        assert(recommendList instanceof Array && recommendList.length, 'recommendList check');
+        const MAX_COUNT = 5;
+        const idArr = recommendList.slice(0, MAX_COUNT).map(({ id }) => id);
+        idArr.forEach(id => assert(id !== undefined && /\d+/.test(id), 'id check'));
+        const { getUserInfo } = require('./dataManager');
+        const result = idArr.map(({ id }) => getUserInfo(id));
+        return result;
+    } catch (e) {
+        console.log('[ERROR] getRecommendUsers', e.toString());
+    }
+    const result = require('./dataCreator').createRecommendUsers(id);
+    return result;
 }
 
 module.exports = {

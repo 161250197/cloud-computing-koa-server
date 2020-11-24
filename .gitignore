@@ -1,3 +1,6 @@
+test.js
+/src/data/userList/*.json
+
 # Logs
 logs
 *.log

@@ -1,17 +1,17 @@
 const { RANDOM_USERS, RECOMMEND_USERS } = require('../data/consts');
-const { createMockUserData } = require('./../util/mockData');
+const { createRecommendUsers } = require('../util/dataCreator');
 
 function getRandomUsers (ctx) {
-    // TODO
     const { count } = ctx.query;
-    ctx.body = createMockUserData(count);
+    ctx.body = createRecommendUsers(undefined, count);
 }
 
-function getRecommendUsers (ctx) {
-    // TODO
+async function getRecommendUsers (ctx) {
     const { id } = ctx.query;
-    console.log(id);
-    ctx.body = createMockUserData();
+    const getData = require('./../util/hbaseHelper').getRecommendUsers;
+    const data = await getData(id);
+    // eslint-disable-next-line require-atomic-updates
+    ctx.body = data;
 }
 
 function setupRouter (router) {
