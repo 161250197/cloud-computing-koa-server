@@ -1,9 +1,34 @@
 const { HOT_TODAY_DATA } = require('../data/consts');
-const { createMockCartoonTodayData } = require('./../util/mockData');
 
 function getHotTodayData (ctx) {
-    // TODO
-    ctx.body = createMockCartoonTodayData();
+    const cartoonInfo = require('./../util/dataManager').getCartoonInfoArr();
+    const hotTodayData = cartoonInfo.map(
+        ({
+            commentSum,
+            firstBroadcastTime,
+            hot,
+            id,
+            isWatchingSum,
+            name,
+            score,
+            thumbUpSum,
+            wantWatchSum,
+            watchedSum
+        }) => {
+            return {
+                commentSum,
+                firstBroadcastTime,
+                hot,
+                id,
+                isWatchingSum,
+                name,
+                score,
+                thumbUpSum,
+                wantWatchSum,
+                watchedSum
+            };
+        });
+    ctx.body = hotTodayData;
 }
 
 function setupRouter (router) {

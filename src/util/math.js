@@ -10,15 +10,25 @@ function calDate (time, dayCount) {
 }
 
 function regularScoreDotOne (score) {
-    const individual = `${Math.floor(score)}`;
+    const individual = `${ Math.floor(score) }`;
     const rest = Math.floor(score * 10) % 10;
-    if (rest === 0) {
+    if (rest === 0)
+    {
         return individual;
     }
-    return `${individual}.${rest}`;
+    return `${ individual }.${ rest }`;
+}
+
+function sortData (source, key, down) {
+    source.sort((a, b) => {
+        return down ? b[key] - a[key] : a[key] - b[key];
+    });
+
+    return source;
 }
 
 module.exports = {
+    sortData,
     calDate,
     regularTimeToDay,
     regularScoreDotOne

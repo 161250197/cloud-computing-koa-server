@@ -9,7 +9,26 @@ const {
 } = require('./../util/mockData');
 
 async function getCartoonInfoArr (ctx) {
-    ctx.body = require('./../util/dataManager').getCartoonInfoArr();
+    let cartoonInfo = require('./../util/dataManager').getCartoonInfoArr();
+    cartoonInfo = cartoonInfo.map(
+        ({
+            firstBroadcastTime,
+            id,
+            name,
+            score,
+            postSrc,
+            homepage
+        }) => {
+            return {
+                firstBroadcastTime,
+                id,
+                name,
+                score,
+                postSrc,
+                homepage
+            };
+        });
+    ctx.body = cartoonInfo;
 }
 
 function getCartoonRankPath (ctx) {

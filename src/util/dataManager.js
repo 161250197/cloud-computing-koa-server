@@ -1,3 +1,5 @@
+const { sortData } = require('./math');
+
 let userInfoMap;
 
 function createUserInfoMap () {
@@ -56,7 +58,9 @@ async function refreshCartoonInfoArr () {
     const fs = require('fs');
     const path = require('path');
     const target = path.resolve(__dirname, CARTOON_INFO_ARR_PATH);
-    fs.writeFileSync(target, JSON.stringify(cartoonInfoArr));
+    const HOT_KEY = 'hot';
+    const sortedData = sortData(cartoonInfoArr, HOT_KEY, true);
+    fs.writeFileSync(target, JSON.stringify(sortedData));
     console.log('[INFO] refreshCartoonInfoArr success');
 }
 
