@@ -3,9 +3,6 @@ const {
     CARTOON_RANK_PATH,
     TIME_RANGE_CARTOON_RANK_PATH
 } = require('../data/consts');
-const {
-    createMockTimeRangeCartoonRankPath
-} = require('./../util/mockData');
 
 async function getCartoonInfoArr (ctx) {
     let cartoonInfo = require('./../util/dataManager').getCartoonInfoArr();
@@ -36,12 +33,12 @@ async function getCartoonRankPath (ctx) {
     ctx.body = await require('./../util/hbaseHelper').getCartoonRankPath(id);
 }
 
-function getTimeRangeCartoonRankPath (ctx) {
-    // TODO
+async function getTimeRangeCartoonRankPath (ctx) {
     let { from, to } = ctx.query;
     from = Number(from);
     to = Number(to);
-    ctx.body = createMockTimeRangeCartoonRankPath(from, to);
+    // eslint-disable-next-line require-atomic-updates
+    ctx.body = await require('./../util/dataManager').getTimeRangeCartoonRankPath(from, to);
 }
 
 function setupRouter (router) {
