@@ -35,13 +35,13 @@
   },
   "homepage": "https://github.com/161250197/cloud-computing-koa-server#readme",
   "dependencies": {
-    "eslint": "^7.13.0",
-    "husky": "^4.3.0",
-    "koa": "^2.13.0",
-    "koa-bodyparser": "^4.3.0",
-    "koa-router": "^10.0.0",
-    "lint-staged": "^10.5.1",
-    "node-thrift2-hbase": "^0.6.2",
-    "nodemon": "^2.0.6"
+    "eslint": "7.13.0",
+    "husky": "4.3.0",
+    "koa": "2.13.0",
+    "koa-bodyparser": "4.3.0",
+    "koa-router": "10.0.0",
+    "lint-staged": "10.5.1",
+    "node-thrift2-hbase": "0.6.2",
+    "nodemon": "2.0.6"
   }
 }
