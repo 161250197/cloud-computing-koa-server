@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "xls-to-json": "^2.1.0"
+    "xls-to-json": "2.1.0"
   }
 }
