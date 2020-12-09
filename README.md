@@ -14,6 +14,8 @@ npm run server
 ## 说明
 
 * 连接 hbase 相关配置位于 src/data/consts.js 中，当读取数据失败时自动返回 mock 数据
+    
+    * mock数据为基于11月中旬的数据构建的假数据
 
 ## 接口说明
 
